@@ -1,4 +1,4 @@
-import {AppSelect} from "@/app/[lang]/_components/app-select";
+import { AppSelect } from '@/app/[lang]/_components/app-select'
 
 export default function Home() {
   return (

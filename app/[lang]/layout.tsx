@@ -1,6 +1,7 @@
 import './globals.css'
 import type { Metadata } from 'next'
 import { Inter } from 'next/font/google'
+import { WrappedProviders } from '@/app/[lang]/providers'
 
 const inter = Inter({ subsets: ['latin'] })
 
@@ -16,7 +17,9 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en" data-theme="garden">
-      <body className={inter.className}>{children}</body>
+      <body className={inter.className}>
+        <WrappedProviders>{children}</WrappedProviders>
+      </body>
     </html>
   )
 }
