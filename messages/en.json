@@ -1,7 +1,10 @@
 {
   "app": {
-    "app-select": {
-      "bill-splitting": "Bill Splitting"
+    "AppSelect": {
+      "bill-splitting": {
+        "title": "Split Bills",
+        "description": "Split the bills with your friends and family"
+      }
     }
   }
 }

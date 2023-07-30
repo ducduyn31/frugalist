@@ -1,7 +1,10 @@
 {
   "app": {
-    "app-select": {
-      "bill-splitting": "Chia hóa đơn"
+    "AppSelect": {
+      "bill-splitting": {
+        "title": "Chia sẻ hóa đơn",
+        "description": "Chia sẻ hóa đơn với bạn bè và gia đình."
+      }
     }
   }
 }
