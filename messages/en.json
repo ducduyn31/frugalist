@@ -9,10 +9,22 @@
   },
   "common": {
     "PageHeader": {
-      "bills": {
-        "title": "Bills",
-        "subtitle": "Manage and edit your bills",
-        "button": "Add Bill"
+      "bill-splitting": {
+        "bills": {
+          "title": "Bills",
+          "subtitle": "Manage and edit your bills",
+          "button": "Add Bill"
+        },
+        "people": {
+          "title": "Group",
+          "subtitle": "Manage and edit your group",
+          "button": "Add Person"
+        },
+        "calendar": {
+          "title": "Calendar",
+          "subtitle": "Select which days to include in the calculation",
+          "button": "Add Excluded Days"
+        }
       }
     }
   },
@@ -21,6 +33,18 @@
       "NoBillState": {
         "title": "No Bill",
         "description": "You don't have any bills yet. Add one now!"
+      }
+    },
+    "people": {
+      "NoPersonState": {
+        "title": "No Person",
+        "description": "You don't have any people yet. Add one now!"
+      }
+    },
+    "calendar": {
+      "NoCalendarState": {
+        "title": "No Calendar",
+        "description": "You don't have any excluded days yet. Add one now!"
       }
     },
     "common": {

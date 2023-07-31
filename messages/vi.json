@@ -9,10 +9,22 @@
   },
   "common": {
     "PageHeader": {
-      "bills": {
-        "title": "Hoá đơn",
-        "subtitle": "Quản lý hoá đơn của bạn",
-        "button": "Thêm hoá đơn"
+      "bill-splitting": {
+        "bills": {
+          "title": "Hoá đơn",
+          "subtitle": "Quản lý hoá đơn của bạn",
+          "button": "Thêm hoá đơn"
+        },
+        "people": {
+          "title": "Nhóm",
+          "subtitle": "Quản lý bạn trong nhóm",
+          "button": "Thêm bạn bè"
+        },
+        "calendar": {
+          "title": "Lịch trình",
+          "subtitle": "Chọn những ngày bạn không muốn chia tiền",
+          "button": "Thêm ngày"
+        }
       }
     }
   },
@@ -23,12 +35,24 @@
         "description": "Thêm hoá đơn để tiếp tục nhé!"
       }
     },
+    "people": {
+      "NoPersonState": {
+        "title": "Không có bạn bè",
+        "description": "Thêm bạn bè để tiếp tục nhé!"
+      }
+    },
+    "calendar": {
+      "NoCalendarState": {
+        "title": "Không có ngày",
+        "description": "Thêm ngày để tiếp tục nhé!"
+      }
+    },
     "common": {
       "stepper": {
         "add-bills": "Hoá đơn",
-        "add-people": "Thêm người",
+        "add-people": "Nhóm",
         "edit-calendar": "Chi tiết",
-        "calculate": "Chia đều"
+        "calculate": "Chia tiền"
       },
       "navigation": {
         "back": "Trước",

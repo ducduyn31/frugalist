@@ -25,7 +25,7 @@ export default async function BillSplittingLayout({
   return (
     <>
       <div className="flex">
-        <section className="ml-4 flex justify-center max-w-xs">
+        <section className="ml-4 flex justify-center max-w-xs h-screen">
           <ul className="steps steps-vertical">
             {steps.map((step: { key: string; path: string }, index: number) => (
               <li
@@ -41,7 +41,7 @@ export default async function BillSplittingLayout({
             ))}
           </ul>
         </section>
-        <div className="w-full">
+        <div className="w-full overflow-y-scroll">
           <section className="m-28">{children}</section>
           <PageNavigator steps={steps} />
         </div>

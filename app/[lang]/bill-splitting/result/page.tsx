@@ -1,5 +1,6 @@
 import React from 'react'
+import { PageHeader } from '@/components/page-header'
 
 export default function ResultView() {
-  return <div>Result</div>
+  return <PageHeader namespace="bill-splitting.result" />
 }
