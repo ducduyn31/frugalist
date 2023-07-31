@@ -27,7 +27,7 @@ export default async function RootLayout({
   const dictionary = await getDictionary(lang)
 
   return (
-    <html lang="en" data-theme="garden">
+    <html lang={lang}>
       <body className={inter.className}>
         <WrappedProviders
           providers={[
