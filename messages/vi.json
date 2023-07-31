@@ -3,7 +3,36 @@
     "AppSelect": {
       "bill-splitting": {
         "title": "Chia sẻ hóa đơn",
-        "description": "Chia sẻ hóa đơn với bạn bè và gia đình."
+        "description": "Chia sẻ hóa đơn với bạn bè và gia đình"
+      }
+    }
+  },
+  "common": {
+    "PageHeader": {
+      "bills": {
+        "title": "Hoá đơn",
+        "subtitle": "Quản lý hoá đơn của bạn",
+        "button": "Thêm hoá đơn"
+      }
+    }
+  },
+  "bill-splitting": {
+    "bills": {
+      "NoBillState": {
+        "title": "Không có hoá đơn",
+        "description": "Thêm hoá đơn để tiếp tục nhé!"
+      }
+    },
+    "common": {
+      "stepper": {
+        "add-bills": "Hoá đơn",
+        "add-people": "Thêm người",
+        "edit-calendar": "Chi tiết",
+        "calculate": "Chia đều"
+      },
+      "navigation": {
+        "back": "Trước",
+        "next": "Tiếp"
       }
     }
   }

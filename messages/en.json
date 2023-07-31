@@ -6,5 +6,34 @@
         "description": "Split the bills with your friends and family"
       }
     }
+  },
+  "common": {
+    "PageHeader": {
+      "bills": {
+        "title": "Bills",
+        "subtitle": "Manage and edit your bills",
+        "button": "Add Bill"
+      }
+    }
+  },
+  "bill-splitting": {
+    "bills": {
+      "NoBillState": {
+        "title": "No Bill",
+        "description": "You don't have any bills yet. Add one now!"
+      }
+    },
+    "common": {
+      "stepper": {
+        "add-bills": "Add Bills",
+        "add-people": "Add People",
+        "edit-calendar": "Update calendar",
+        "calculate": "Split the bills!"
+      },
+      "navigation": {
+        "back": "Previous",
+        "next": "Next"
+      }
+    }
   }
 }
