@@ -63,6 +63,31 @@
       "NoPersonState": {
         "title": "No Person",
         "description": "You don't have any people yet. Add one now!"
+      },
+      "AddPersonForm": {
+        "title": "Add Person",
+        "description": "Add a new person to the list",
+        "form": {
+          "name": {
+            "label": "Name of the person",
+            "placeholder": "Eg: John Doe"
+          },
+          "active": {
+            "label": "Currently active"
+          },
+          "interval": {
+            "label": "Period"
+          },
+          "startDate": {
+            "label": "Start date"
+          },
+          "submit": {
+            "label": "Add Person"
+          },
+          "cancel": {
+            "label": "Cancel"
+          }
+        }
       }
     },
     "calendar": {

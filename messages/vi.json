@@ -63,6 +63,31 @@
       "NoPersonState": {
         "title": "Không có bạn bè",
         "description": "Thêm bạn bè để tiếp tục nhé!"
+      },
+      "AddPersonForm": {
+        "title": "Thêm thành viên",
+        "description": "Bạn bè cùng chia tiền",
+        "form": {
+          "name": {
+            "label": "Tên bạn",
+            "placeholder": "Ví dụ: Nguyễn Văn A"
+          },
+          "active": {
+            "label": "Vẫn đang sống chung"
+          },
+          "interval": {
+            "label": "Thời gian"
+          },
+          "startDate": {
+            "label": "Ngày bắt đầu"
+          },
+          "submit": {
+            "label": "Thêm bạn bè"
+          },
+          "cancel": {
+            "label": "Hủy"
+          }
+        }
       }
     },
     "calendar": {
