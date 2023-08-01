@@ -33,6 +33,30 @@
       "NoBillState": {
         "title": "No Bill",
         "description": "You don't have any bills yet. Add one now!"
+      },
+      "AddBillForm": {
+        "title": "Add Bill",
+        "description": "Add a new bill to the list",
+        "addItemSection": {
+          "title": "Add an item",
+          "description": "Add an item to the bill",
+          "button": "Add Item"
+        },
+        "form": {
+          "name": {
+            "label": "Name of the bill",
+            "placeholder": "Eg: Electricity bill April to June"
+          },
+          "interval": {
+            "label": "Period"
+          },
+          "submit": {
+            "label": "Add Bill"
+          },
+          "cancel": {
+            "label": "Cancel"
+          }
+        }
       }
     },
     "people": {

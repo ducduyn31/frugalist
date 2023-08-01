@@ -1,12 +1,14 @@
 'use client'
 import React from 'react'
 import { useTranslations } from 'use-intl'
+import Link from 'next/link'
 
 interface Props {
   namespace: string
+  addAction?: string
 }
 
-export const PageHeader: React.FC<Props> = ({ namespace }) => {
+export const PageHeader: React.FC<Props> = ({ namespace, addAction }) => {
   const t = useTranslations(`common.PageHeader.${namespace}`)
 
   return (
@@ -17,9 +19,12 @@ export const PageHeader: React.FC<Props> = ({ namespace }) => {
         </h1>
         <p className="text-base-content/50">{t('subtitle')}</p>
       </div>
-      <button className="btn btn-primary btn-md px-8 self-end">
+      <Link
+        href={addAction ?? ''}
+        className="btn btn-primary btn-md px-8 self-end"
+      >
         {t('button')}
-      </button>
+      </Link>
     </header>
   )
 }

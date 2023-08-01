@@ -5,7 +5,7 @@ import { NoBillState } from '@/app/[lang]/bill-splitting/bills/no-bill-state'
 export default function AddBills() {
   return (
     <>
-      <PageHeader namespace="bill-splitting.bills" />
+      <PageHeader namespace="bill-splitting.bills" addAction="bills/new" />
       <main className="mt-20">
         <NoBillState />
       </main>

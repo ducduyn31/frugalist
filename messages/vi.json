@@ -33,6 +33,30 @@
       "NoBillState": {
         "title": "Không có hoá đơn",
         "description": "Thêm hoá đơn để tiếp tục nhé!"
+      },
+      "AddBillForm": {
+        "title": "Thêm hoá đơn",
+        "description": "Thêm hoá đơn của bạn",
+        "addItemSection": {
+          "title": "Thêm mục",
+          "description": "Thêm mục vào hoá đơn",
+          "button": "Thêm mục"
+        },
+        "form": {
+          "name": {
+            "label": "Tên hoá đơn",
+            "placeholder": "Tên hoá đơn"
+          },
+          "interval": {
+            "label": "Thời gian"
+          },
+          "submit": {
+            "label": "Thêm hoá đơn"
+          },
+          "cancel": {
+            "label": "Hủy"
+          }
+        }
       }
     },
     "people": {
