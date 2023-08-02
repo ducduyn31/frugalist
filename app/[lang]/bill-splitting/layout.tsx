@@ -1,19 +1,7 @@
 import React, { PropsWithChildren } from 'react'
 import { getTranslator } from 'next-intl/server'
-import { PageNavigator } from '@/app/[lang]/bill-splitting/page-navigator'
 import Link from 'next/link'
-
-const getSteps = async () => {
-  return {
-    steps: [
-      { key: 'add-bills', path: 'bills' },
-      { key: 'add-people', path: 'people' },
-      { key: 'edit-calendar', path: 'calendar' },
-      { key: 'calculate', path: 'result' },
-    ],
-    currentStep: 0,
-  }
-}
+import { getSteps } from '@/app/[lang]/bill-splitting/steps'
 
 export default async function BillSplittingLayout({
   children,
@@ -41,10 +29,7 @@ export default async function BillSplittingLayout({
             ))}
           </ul>
         </section>
-        <div className="w-full overflow-y-scroll">
-          <section className="m-28">{children}</section>
-          <PageNavigator steps={steps} />
-        </div>
+        <div className="w-full overflow-y-scroll">{children}</div>
       </div>
     </>
   )

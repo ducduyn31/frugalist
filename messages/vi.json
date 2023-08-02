@@ -28,6 +28,35 @@
       }
     }
   },
+  "login": {
+    "Login": {
+      "title": "Đăng nhập",
+      "description": "Frugalist là ứng dụng chia sẻ hóa đơn với bạn bè và gia đình. Đăng nhập để tiếp tục nhé!",
+      "form": {
+        "email": {
+          "label": "Email",
+          "placeholder": "Eg: john@example.com",
+          "error": "Email không hợp lệ",
+          "required": "Bắt buộc"
+        },
+        "submit": {
+          "label": "Đăng nhập"
+        }
+      },
+      "error": {
+        "OAuthSignin": "Có lỗi xảy ra khi đăng nhập. Vui lòng thử lại sau.",
+        "OAuthCallback": "Có lỗi xảy ra khi đăng nhập. Vui lòng thử lại sau.",
+        "OAuthCreateAccount": "Có lỗi xảy ra khi đăng kí. Vui lòng thử lại sau.",
+        "EmailCreateAccount": "Có lỗi xảy ra khi đăng kí. Vui lòng thử lại sau.",
+        "Callback": "Có lỗi xảy ra khi đăng nhập. Vui lòng thử lại sau.",
+        "OAuthAccountNotLinked": "Có lỗi xảy ra khi đăng nhập. Vui lòng thử lại sau.",
+        "EmailSignin": "Có lỗi xảy ra khi đăng nhập. Vui lòng thử lại sau.",
+        "CredentialsSignin": "Có lỗi xảy ra khi đăng nhập. Vui lòng thử lại sau.",
+        "SessionRequired": "Có lỗi xảy ra khi đăng nhập. Vui lòng thử lại sau.",
+        "Default": "Có lỗi xảy ra khi đăng nhập. Vui lòng thử lại sau."
+      }
+    }
+  },
   "bill-splitting": {
     "bills": {
       "NoBillState": {

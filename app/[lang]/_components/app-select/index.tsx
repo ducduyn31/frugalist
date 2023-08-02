@@ -1,16 +1,16 @@
-'use client'
-
 import * as React from 'react'
 import { FC } from 'react'
-import { useTranslations } from 'use-intl'
 import Link from 'next/link'
+import { getTranslator } from 'next-intl/server'
+import { Locale } from '@/i18n-config'
 
 interface Props {
   name: string
+  locale: Locale
 }
 
-export const AppSelect: FC<Props> = ({ name }) => {
-  const t = useTranslations('app.AppSelect')
+export const AppSelect: FC<Props> = async ({ name, locale }) => {
+  const t = await getTranslator(locale, 'app.AppSelect')
   return (
     <Link href={name} className="card bg-base-200">
       <div className="card-body">

@@ -28,6 +28,35 @@
       }
     }
   },
+  "login": {
+    "Login": {
+      "title": "Login",
+      "description": "Frugalist helps you split bills with your friends and family. Login to get started!",
+      "form": {
+        "email": {
+          "label": "Email",
+          "placeholder": "Eg: john@example.com",
+          "error": "Please enter a valid email address",
+          "required": "Email is required"
+        },
+        "submit": {
+          "label": "Login"
+        }
+      },
+      "error": {
+        "OAuthSignin": "There was an error while signing in. Please try again later.",
+        "OAuthCallback": "There was an error while signing in. Please try again later.",
+        "OAuthCreateAccount": "There was an error while creating your account. Please try again later.",
+        "EmailCreateAccount": "There was an error while creating your account. Please try again later.",
+        "Callback": "There was an error while signing in. Please try again later.",
+        "OAuthAccountNotLinked": "There was an error while signing in. Please try again later.",
+        "EmailSignin": "There was an error while signing in. Please try again later.",
+        "CredentialsSignin": "There was an error while signing in. Please try again later.",
+        "SessionRequired": "There was an error while signing in. Please try again later.",
+        "Default": "There was an error while signing in. Please try again later."
+      }
+    }
+  },
   "bill-splitting": {
     "bills": {
       "NoBillState": {
