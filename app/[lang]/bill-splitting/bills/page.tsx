@@ -1,6 +1,6 @@
 import React from 'react'
 import { PageHeader } from '@/components/page-header'
-import { NoBillState } from '@/app/[lang]/bill-splitting/bills/no-bill-state'
+import { NoBillState } from '@/app/[lang]/bill-splitting/bills/_components/no-bill-state'
 
 export default function AddBills() {
   return (

@@ -69,7 +69,19 @@
         "addItemSection": {
           "title": "Thêm mục",
           "description": "Thêm mục vào hoá đơn",
-          "button": "Thêm mục"
+          "button": "Thêm mục",
+          "item": {
+            "name": {
+              "placeholder": "Tên mục"
+            },
+            "amount": {
+              "placeholder": "Số tiền"
+            },
+            "type": {
+              "fixed": "Cố định",
+              "variable": "Biến đổi"
+            }
+          }
         },
         "form": {
           "name": {

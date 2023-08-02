@@ -81,7 +81,19 @@
         "addItemSection": {
           "title": "Add an item",
           "description": "Add an item to the bill",
-          "button": "Add Item"
+          "button": "Add Item",
+          "item": {
+            "name": {
+              "placeholder": "Eg: Rent"
+            },
+            "amount": {
+              "placeholder": "Eg: 1000"
+            },
+            "type": {
+              "fixed": "Fixed",
+              "variable": "Variable"
+            }
+          }
         },
         "form": {
           "name": {
