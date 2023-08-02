@@ -53,6 +53,7 @@ model User {
   updatedAt     DateTime  @updatedAt @map("updated_at")
   accounts      Account[]
   sessions      Session[]
+  Payable       Payable[]
 
   @@map("users")
 }
@@ -66,4 +67,18 @@ model VerificationToken {
 
   @@unique([identifier, token])
   @@map("verificationtokens")
+}
+
+model Payable {
+  id         String   @id @default(cuid())
+  userId     String   @map("user_id")
+  name       String
+  fromDate   DateTime @map("from_date")
+  toDate     DateTime @map("to_date")
+  components Json
+  createdAt  DateTime @default(now()) @map("created_at")
+  updatedAt  DateTime @updatedAt @map("updated_at")
+  user       User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@map("payables")
 }

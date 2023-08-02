@@ -26,6 +26,18 @@
           "button": "Add Excluded Days"
         }
       }
+    },
+    "TextInput": {
+      "errors": {
+        "required": "This field is required",
+        "invalid": "This field is invalid"
+      }
+    },
+    "DateRangeInput": {
+      "errors": {
+        "required": "This field is required",
+        "invalid": "This field is invalid"
+      }
     }
   },
   "login": {

@@ -1,13 +1,16 @@
 'use client'
 import React from 'react'
+import { useTranslations } from 'use-intl'
 
 interface Props {
   label: string
   placeholder?: string
+  errorMessage?: string
 }
 
 export const TextInput = React.forwardRef<HTMLInputElement, Props>(
-  function TextField({ label, placeholder, ...rest }, ref) {
+  function TextField({ label, placeholder, errorMessage, ...rest }, ref) {
+    const t = useTranslations('common.TextInput')
     return (
       <div>
         <label className="label">
@@ -20,6 +23,9 @@ export const TextInput = React.forwardRef<HTMLInputElement, Props>(
           ref={ref}
           {...rest}
         />
+        {errorMessage && (
+          <label className="text-xs text-error mt-1">{t(errorMessage)}</label>
+        )}
       </div>
     )
   },
