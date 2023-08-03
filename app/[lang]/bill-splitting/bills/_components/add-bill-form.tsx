@@ -16,7 +16,11 @@ import { trpc } from '@/trpc/trpc-client'
 export const AddBillForm = () => {
   const t = useTranslations('bill-splitting.bills.AddBillForm')
 
-  const billCreator = trpc.billCreator.useMutation()
+  const billCreator = trpc.billCreator.useMutation({
+    onSuccess: () => {
+      trpc.useContext().billLister.invalidate()
+    },
+  })
 
   const cancelButtonRef = useRef<HTMLButtonElement>(null)
   const router = useRouter()
@@ -37,6 +41,7 @@ export const AddBillForm = () => {
 
   const createBill = (values: BillFormValues) => {
     billCreator.mutate(values)
+    router.back()
   }
 
   return (

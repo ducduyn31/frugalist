@@ -1,9 +1,7 @@
 'use server'
 import { authorizedProcedure } from '@/trpc/trpc-server'
 import { BillFormValuesSchema } from '@/app/[lang]/bill-splitting/bills/bill-form'
-import { PrismaClient } from '@prisma/client'
-
-const prisma = new PrismaClient()
+import { db } from '@/lib/db'
 
 export const billCreator = authorizedProcedure
   .input(BillFormValuesSchema)
@@ -13,7 +11,7 @@ export const billCreator = authorizedProcedure
     if (!session?.user?.email) {
       throw new Error('Not authorized')
     }
-    await prisma.payable.create({
+    await db.payable.create({
       data: {
         name,
         components: items,
@@ -27,3 +25,17 @@ export const billCreator = authorizedProcedure
       },
     })
   })
+
+export const billLister = authorizedProcedure.query(async opts => {
+  const { session } = opts.ctx
+  if (!session?.user?.email) {
+    throw new Error('Not authorized')
+  }
+  return db.payable.findMany({
+    where: {
+      user: {
+        email: session.user.email,
+      },
+    },
+  })
+})
