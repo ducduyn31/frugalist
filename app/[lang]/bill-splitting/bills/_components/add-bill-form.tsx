@@ -8,14 +8,16 @@ import { DateRangeInput } from '@/components/date-range-input'
 import {
   BillFormValues,
   BillFormValuesSchema,
-  createBill,
 } from '@/app/[lang]/bill-splitting/bills/bill-form'
 import { yupResolver } from '@hookform/resolvers/yup'
 import { BillItemForm } from '@/app/[lang]/bill-splitting/bills/_components/bill-item-form'
-import { DevTool } from '@hookform/devtools'
+import { trpc } from '@/trpc/trpc-client'
 
 export const AddBillForm = () => {
   const t = useTranslations('bill-splitting.bills.AddBillForm')
+
+  const billCreator = trpc.billCreator.useMutation()
+
   const cancelButtonRef = useRef<HTMLButtonElement>(null)
   const router = useRouter()
   const {
@@ -32,6 +34,10 @@ export const AddBillForm = () => {
     reset()
     router.back()
   }, [router, reset])
+
+  const createBill = (values: BillFormValues) => {
+    billCreator.mutate(values)
+  }
 
   return (
     <dialog open className="modal">
@@ -68,7 +74,6 @@ export const AddBillForm = () => {
           </button>
         </div>
       </form>
-      <DevTool control={control} />
       <form method="dialog" className="modal-backdrop">
         <button ref={cancelButtonRef} onClick={cancelForm}>
           close

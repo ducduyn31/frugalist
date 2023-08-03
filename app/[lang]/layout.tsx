@@ -6,6 +6,7 @@ import { WrappedProviders } from '@/app/[lang]/providers'
 import { getDictionary } from '@/app/[lang]/dictionaries'
 import { Locale } from '@/i18n-config'
 import { NextIntlClientProvider } from 'next-intl'
+import { TrpcProvider } from '@/app/[lang]/_providers/trpc-provider'
 
 const inter = Inter({ subsets: ['latin'] })
 
@@ -36,6 +37,7 @@ export default async function RootLayout({
               locale={lang}
               messages={dictionary}
             />,
+            <TrpcProvider key="trpc" />,
           ]}
         >
           {children}

@@ -35,7 +35,3 @@ export const BillFormValuesSchema = yup.object().shape({
     )
     .required('errors.required'),
 })
-
-export const createBill = async (values: BillFormValues) => {
-  console.log('values', values)
-}

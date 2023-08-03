@@ -1,10 +1,10 @@
 'use client'
 import React from 'react'
-import { Icon } from '@/components/icon'
 import { useTranslations } from 'use-intl'
 import { usePathname } from 'next/navigation'
 import Link from 'next/link'
 import { i18n } from '@/i18n-config'
+import { FaChevronLeft, FaChevronRight } from 'react-icons/fa'
 
 interface Props {
   steps: { key: string; path: string }[]
@@ -33,7 +33,7 @@ export const PageNavigator: React.FC<Props> = ({ steps }) => {
           href={`${steps.at(currentStepIndex - 1)?.path}`}
           className="btn btn-md text-base"
         >
-          <Icon name="FaChevronLeft" />
+          <FaChevronLeft />
           <div className="flex flex-col text-left">
             <b className="text-base-content/50 font-normal text-xs">
               {t('navigation.back')}
@@ -56,7 +56,7 @@ export const PageNavigator: React.FC<Props> = ({ steps }) => {
             </span>
             {t(`stepper.${steps.at(currentStepIndex + 1)?.key}`)}
           </div>
-          <Icon name="FaChevronRight" />
+          <FaChevronRight />
         </Link>
       ) : (
         <div />

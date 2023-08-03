@@ -8,9 +8,9 @@ import {
   RangeFocus,
   RangeKeyDict,
 } from 'react-date-range'
-import { Icon } from '@/components/icon'
 import { useTranslations } from 'use-intl'
 import { ChangeHandler } from 'react-hook-form'
+import { AiOutlineCalendar } from 'react-icons/ai'
 
 interface Props {
   label: string
@@ -89,7 +89,7 @@ export const DateRangeInput = React.forwardRef<HTMLInputElement, Props>(
             className="btn btn-square"
             onClick={() => setShowDatePicker(!showDatePicker)}
           >
-            <Icon name="AiOutlineCalendar" />
+            <AiOutlineCalendar />
           </button>
         </div>
         {errorMessage && (

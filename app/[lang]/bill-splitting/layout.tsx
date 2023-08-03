@@ -1,15 +1,13 @@
 import React, { PropsWithChildren } from 'react'
-import { getTranslator } from 'next-intl/server'
 import Link from 'next/link'
 import { getSteps } from '@/app/[lang]/bill-splitting/steps'
 import { PageNavigator } from '@/app/[lang]/bill-splitting/page-navigator'
+import { T } from '@/components/t-component'
 
 export default async function BillSplittingLayout({
   children,
-  params: { lang },
 }: PropsWithChildren<{ params: { lang: string } }>) {
   const { steps, currentStep } = await getSteps()
-  const t = await getTranslator(lang, 'bill-splitting.common')
 
   return (
     <>
@@ -23,7 +21,10 @@ export default async function BillSplittingLayout({
               >
                 <Link href={`${step.path}`} prefetch>
                   <span className="text-base-content text-sm font-normal">
-                    {t(`stepper.${step.key}`)}
+                    <T
+                      ns="bill-splitting.common"
+                      text={`stepper.${step.key}`}
+                    />
                   </span>
                 </Link>
               </li>

@@ -1,6 +1,7 @@
 'use client'
 import React from 'react'
 import loadable from '@loadable/component'
+import { BiError } from 'react-icons/bi'
 
 interface Props extends React.SVGProps<SVGSVGElement> {
   name: string
@@ -13,7 +14,7 @@ export const Icon: React.FC<Props> = ({ name, ...rest }) => {
     .toLowerCase()
 
   const Element = loadable(() => import(`react-icons/${lib}/index.js`), {
-    resolveComponent: components => components[name],
+    resolveComponent: components => components[name] ?? BiError,
   })
 
   return <Element {...rest} />

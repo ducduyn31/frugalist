@@ -1,8 +1,8 @@
 import React from 'react'
 import { Control, useFieldArray } from 'react-hook-form'
 import { BillFormValues } from '@/app/[lang]/bill-splitting/bills/bill-form'
-import { Icon } from '@/components/icon'
 import { useTranslations } from 'use-intl'
+import { RiAddLine, RiDeleteBinLine } from 'react-icons/ri'
 
 interface Props {
   control: Control<BillFormValues>
@@ -32,7 +32,7 @@ export const BillItemForm: React.FC<Props> = ({ control }) => {
             className="btn btn-outline btn-primary"
             onClick={addItem}
           >
-            <Icon name="RiAddLine" className="mr-2" />
+            <RiAddLine className="mr-2" />
             {t('addItemSection.button')}
           </button>
         </div>
@@ -59,6 +59,7 @@ export const BillItemForm: React.FC<Props> = ({ control }) => {
             </div>
             <select
               className="select select-bordered col-span-2"
+              defaultValue="fixed"
               {...control.register(`items.${index}.type` as const)}
             >
               <option selected value="fixed">
@@ -69,7 +70,7 @@ export const BillItemForm: React.FC<Props> = ({ control }) => {
               </option>
             </select>
             <button type="button">
-              <Icon name="RiDeleteBinLine" />
+              <RiDeleteBinLine />
             </button>
           </div>
         ))}
