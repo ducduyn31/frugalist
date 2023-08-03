@@ -11,8 +11,8 @@ import {
   createBill,
 } from '@/app/[lang]/bill-splitting/bills/bill-form'
 import { yupResolver } from '@hookform/resolvers/yup'
-import { DevTool } from '@hookform/devtools'
 import { BillItemForm } from '@/app/[lang]/bill-splitting/bills/_components/bill-item-form'
+import { DevTool } from '@hookform/devtools'
 
 export const AddBillForm = () => {
   const t = useTranslations('bill-splitting.bills.AddBillForm')

@@ -20,6 +20,7 @@ export const PageHeader: React.FC<Props> = ({ namespace, addAction }) => {
         <p className="text-base-content/50">{t('subtitle')}</p>
       </div>
       <Link
+        prefetch
         href={addAction ?? ''}
         className="btn btn-primary btn-md px-8 self-end"
       >

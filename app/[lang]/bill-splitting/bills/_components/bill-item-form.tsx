@@ -57,9 +57,16 @@ export const BillItemForm: React.FC<Props> = ({ control }) => {
                 {...control.register(`items.${index}.amount` as const)}
               />
             </div>
-            <select className="select col-span-2">
-              <option selected>{t('addItemSection.item.type.fixed')}</option>
-              <option>{t('addItemSection.item.type.variable')}</option>
+            <select
+              className="select select-bordered col-span-2"
+              {...control.register(`items.${index}.type` as const)}
+            >
+              <option selected value="fixed">
+                {t('addItemSection.item.type.fixed')}
+              </option>
+              <option value="variable">
+                {t('addItemSection.item.type.variable')}
+              </option>
             </select>
             <button type="button">
               <Icon name="RiDeleteBinLine" />

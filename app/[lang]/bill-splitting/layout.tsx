@@ -2,6 +2,7 @@ import React, { PropsWithChildren } from 'react'
 import { getTranslator } from 'next-intl/server'
 import Link from 'next/link'
 import { getSteps } from '@/app/[lang]/bill-splitting/steps'
+import { PageNavigator } from '@/app/[lang]/bill-splitting/page-navigator'
 
 export default async function BillSplittingLayout({
   children,
@@ -20,7 +21,7 @@ export default async function BillSplittingLayout({
                 key={step.key}
                 className={`step ${index <= currentStep ? 'step-primary' : ''}`}
               >
-                <Link href={`${step.path}`}>
+                <Link href={`${step.path}`} prefetch>
                   <span className="text-base-content text-sm font-normal">
                     {t(`stepper.${step.key}`)}
                   </span>
@@ -29,7 +30,10 @@ export default async function BillSplittingLayout({
             ))}
           </ul>
         </section>
-        <div className="w-full overflow-y-scroll">{children}</div>
+        <div className="w-full overflow-y-scroll">
+          <section className="m-28">{children}</section>
+          <PageNavigator steps={steps} />
+        </div>
       </div>
     </>
   )

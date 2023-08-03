@@ -1,3 +1,4 @@
+'use client'
 import React from 'react'
 import { AddPersonForm } from '@/app/[lang]/bill-splitting/people/add-person-form'
 
