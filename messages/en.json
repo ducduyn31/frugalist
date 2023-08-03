@@ -94,6 +94,9 @@
           "title": "Add an item",
           "description": "Add an item to the bill",
           "button": "Add Item",
+          "errors": {
+            "required": "This field is required"
+          },
           "item": {
             "name": {
               "placeholder": "Eg: Rent"

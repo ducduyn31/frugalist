@@ -94,6 +94,9 @@
           "title": "Thêm mục",
           "description": "Thêm mục vào hoá đơn",
           "button": "Thêm mục",
+          "errors": {
+            "required": "Không thể để trống"
+          },
           "item": {
             "name": {
               "placeholder": "Tên mục"

@@ -30,7 +30,10 @@ export const BillFormValuesSchema = yup.object().shape({
           .mixed<BillItemType>()
           .oneOf(['fixed', 'variable'])
           .required('errors.required'),
-        amount: yup.number().required('errors.required'),
+        amount: yup
+          .number()
+          .typeError('errors.required')
+          .required('errors.required'),
       }),
     )
     .required('errors.required'),

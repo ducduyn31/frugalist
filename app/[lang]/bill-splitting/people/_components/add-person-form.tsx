@@ -5,7 +5,6 @@ import { useRouter } from 'next/navigation'
 import { useForm } from 'react-hook-form'
 import { TextInput } from '@/components/text-input'
 import { DateInput } from '@/components/date-input'
-import { DevTool } from '@hookform/devtools'
 import {
   PersonFormValues,
   PersonFormValuesSchema,
@@ -24,7 +23,6 @@ export const AddPersonForm: React.FC = () => {
     resetField,
     clearErrors,
     formState: { errors },
-    control,
     handleSubmit,
     register,
   } = useForm<PersonFormValues>({
@@ -102,7 +100,6 @@ export const AddPersonForm: React.FC = () => {
           </button>
         </div>
       </form>
-      <DevTool control={control} />
       <form method="dialog" className="modal-backdrop">
         <button ref={cancelButtonRef} onClick={cancelForm}>
           close
