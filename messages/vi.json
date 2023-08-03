@@ -26,6 +26,30 @@
           "button": "Thêm ngày"
         }
       }
+    },
+    "TextInput": {
+      "errors": {
+        "required": "Không thể để trống",
+        "invalid": "Không hợp lệ"
+      }
+    },
+    "DateRangeInput": {
+      "errors": {
+        "required": "Không thể để trống",
+        "invalid": "Không hợp lệ"
+      }
+    },
+    "SelectInput": {
+      "errors": {
+        "required": "Không thể để trống",
+        "invalid": "Không hợp lệ"
+      }
+    },
+    "DateInput": {
+      "errors": {
+        "required": "Không thể để trống",
+        "invalid": "Không hợp lệ"
+      }
     }
   },
   "login": {
@@ -113,8 +137,15 @@
             "label": "Tên bạn",
             "placeholder": "Ví dụ: Nguyễn Văn A"
           },
+          "email": {
+            "label": "Email",
+            "placeholder": "Email cuả bạn"
+          },
           "active": {
             "label": "Vẫn đang sống chung"
+          },
+          "guest": {
+            "label": "Là khách"
           },
           "interval": {
             "label": "Thời gian"

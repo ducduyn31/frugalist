@@ -38,6 +38,18 @@
         "required": "This field is required",
         "invalid": "This field is invalid"
       }
+    },
+    "SelectInput": {
+      "errors": {
+        "required": "This field is required",
+        "invalid": "This field is invalid"
+      }
+    },
+    "DateInput": {
+      "errors": {
+        "required": "This field is required",
+        "invalid": "This field is invalid"
+      }
     }
   },
   "login": {
@@ -125,8 +137,15 @@
             "label": "Name of the person",
             "placeholder": "Eg: John Doe"
           },
+          "email": {
+            "label": "Email of the person",
+            "placeholder": "Eg: john@example.com"
+          },
           "active": {
             "label": "Currently active"
+          },
+          "guest": {
+            "label": "Guest"
           },
           "interval": {
             "label": "Period"

@@ -5,7 +5,8 @@ export interface DateRangeFormValues {
   to?: Date
 }
 
-export const DateRangeFormValuesSchema = yup.object().shape({
-  from: yup.date().required('errors.required'),
-  to: yup.date(),
-})
+export const DateRangeFormValuesSchema: yup.ObjectSchema<DateRangeFormValues> =
+  yup.object().shape({
+    from: yup.date().required('errors.required'),
+    to: yup.date(),
+  })

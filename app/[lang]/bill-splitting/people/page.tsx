@@ -1,5 +1,5 @@
 import React from 'react'
-import { NoPersonState } from '@/app/[lang]/bill-splitting/people/no-person-state'
+import { NoPersonState } from '@/app/[lang]/bill-splitting/people/_components/no-person-state'
 import { PageHeader } from '@/components/page-header'
 
 export default function PeopleEdit() {
