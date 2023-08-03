@@ -5,7 +5,7 @@ import { PageHeader } from '@/components/page-header'
 export default function AddBills() {
   return (
     <>
-      <PageHeader namespace="bill-splitting.bills" addAction="people/new" />
+      <PageHeader namespace="bill-splitting.bills" addAction="bills/new" />
       <main className="mt-20">
         <NoBillState />
       </main>
