@@ -4,7 +4,6 @@ import { useTranslations } from 'use-intl'
 import { useRouter } from 'next/navigation'
 import { useForm } from 'react-hook-form'
 import { TextInput } from '@/components/text-input'
-import { DateRangeInput } from '@/components/date-range-input'
 import { DateInput } from '@/components/date-input'
 
 export const AddPersonForm: React.FC = () => {
@@ -34,11 +33,11 @@ export const AddPersonForm: React.FC = () => {
             className="checkbox checkbox-primary"
           />
         </label>
-        {watch('active') ? (
-          <DateInput label={t('form.interval.label')} />
-        ) : (
-          <DateRangeInput label={t('form.interval.label')} />
-        )}
+        {/*{watch('active') ? (*/}
+        <DateInput label={t('form.interval.label')} />
+        {/*) : (*/}
+        {/*  <DateRangeInput label={t('form.interval.label')} {...register} />*/}
+        {/*)}*/}
         <div className="divider" />
         <div className="flex justify-center gap-x-4">
           <button
