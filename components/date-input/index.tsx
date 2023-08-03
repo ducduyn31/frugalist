@@ -5,8 +5,14 @@ import { AiOutlineCalendar } from 'react-icons/ai'
 import { ChangeHandler } from 'react-hook-form'
 import { DateTime } from 'luxon'
 import { useTranslations } from 'use-intl'
+import './override.css'
 
-const dateCustomizedCss: ClassNames = {}
+const dateCustomizedCss: ClassNames = {
+  month: 'bg-base-100',
+  weekDays: 'bg-base-100',
+  monthAndYearWrapper: 'bg-base-100',
+  nextPrevButton: 'bg-base-100',
+}
 interface Props extends React.HTMLProps<HTMLInputElement> {
   label: string
   name: string
@@ -42,7 +48,7 @@ export const DateInput = React.forwardRef(function DateInput(
   }
 
   return (
-    <div>
+    <div className="relative">
       <label className="label">
         <span className="label-text">{label}</span>
       </label>
@@ -72,7 +78,9 @@ export const DateInput = React.forwardRef(function DateInput(
       {showDatePicker && (
         <Calendar
           date={date}
+          color={'#f50076'}
           onChange={updateDate}
+          className="top-24 rounded shadow-2xl absolute z-50"
           classNames={dateCustomizedCss}
         />
       )}

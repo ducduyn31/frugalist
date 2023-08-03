@@ -12,6 +12,7 @@ import { useTranslations } from 'use-intl'
 import { ChangeHandler } from 'react-hook-form'
 import { AiOutlineCalendar } from 'react-icons/ai'
 import { DateTime } from 'luxon'
+import './override.css'
 
 interface Props extends React.HTMLProps<HTMLInputElement> {
   label: string
