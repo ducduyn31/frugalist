@@ -12,9 +12,11 @@ import {
 import { CheckboxInput } from '@/components/checkbox-input'
 import { DateRangeInput } from '@/components/date-range-input'
 import { yupResolver } from '@hookform/resolvers/yup'
+import { trpc } from '@/trpc/trpc-client'
 
 export const AddPersonForm: React.FC = () => {
   const t = useTranslations('bill-splitting.people.AddPersonForm')
+  const memberCreator = trpc.createMember.useMutation()
   const cancelButtonRef = useRef<HTMLButtonElement>(null)
   const router = useRouter()
   const {
@@ -34,13 +36,14 @@ export const AddPersonForm: React.FC = () => {
     router.back()
   }, [router, reset])
 
-  const submitForm = (values: PersonFormValues) => {
-    console.log(values)
+  const createMember = (values: PersonFormValues) => {
+    memberCreator.mutate(values)
+    cancelForm()
   }
 
   return (
     <dialog open className="modal">
-      <form className="modal-box" onSubmit={handleSubmit(submitForm)}>
+      <form className="modal-box" onSubmit={handleSubmit(createMember)}>
         <h3 className="font-bold text-lg">{t('title')}</h3>
         <TextInput
           label={t('form.name.label')}

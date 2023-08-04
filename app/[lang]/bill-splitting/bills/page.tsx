@@ -6,7 +6,6 @@ import { createContext } from '@/trpc/trpc-server'
 import { BillItem } from '@/app/[lang]/bill-splitting/bills/_components/bill-item'
 
 export default async function AddBills() {
-  'use server'
   const ctx = await createContext()
   const caller = appRouter.createCaller(ctx)
   const bills = await caller.billLister()

@@ -41,7 +41,7 @@ export const AddBillForm = () => {
 
   const createBill = (values: BillFormValues) => {
     billCreator.mutate(values)
-    router.back()
+    cancelForm()
   }
 
   return (
