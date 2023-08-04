@@ -16,8 +16,10 @@ export const BillItem: React.FC<Props> = ({ bill }) => {
     <div className="card bordered rounded">
       <div className="card-body bg-base-300">
         <div className="grid grid-cols-2 gap-4">
-          <h2 className="card-title">{bill.name}</h2>
-          <p>${items.reduce((acc, b) => acc + b.amount, 0)}</p>
+          <div className="tooltip" data-tip={bill.name}>
+            <h2 className="card-title truncate">{bill.name}</h2>
+          </div>
+          <p>${items.reduce((acc, b) => acc + b.amount, 0).toFixed(2)}</p>
         </div>
         <div className="grid grid-cols-2 gap-4">
           <div>
@@ -33,7 +35,7 @@ export const BillItem: React.FC<Props> = ({ bill }) => {
             </p>
           </div>
         </div>
-        <div className="flex gap-x-4">
+        <div className="flex mt-6 gap-x-4">
           <button className="btn btn-square btn-outline btn-primary">
             <FiEdit2 />
           </button>
