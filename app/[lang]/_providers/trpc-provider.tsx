@@ -8,7 +8,7 @@ import { ReactQueryDevtools } from '@tanstack/react-query-devtools'
 
 const getTrpcEndpoint = () => {
   if (process.env.WEBAPP_URL) {
-    return new URL('/api/trpc', process.env.WEBAPP_URL).href
+    return new URL('/api/trpc', process.env.NEXT_PUBLIC_WEBAPP_URL).href
   }
   return 'http://localhost:3000/api/trpc'
 }
