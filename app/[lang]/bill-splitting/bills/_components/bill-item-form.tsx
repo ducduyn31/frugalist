@@ -66,6 +66,7 @@ export const BillItemForm: React.FC<Props> = ({ control }) => {
               )}
               <input
                 type="number"
+                step="0.01"
                 className="input input-bordered"
                 placeholder={t('addItemSection.item.amount.placeholder')}
                 {...control.register(`items.${index}.amount` as const)}
