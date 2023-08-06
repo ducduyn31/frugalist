@@ -72,7 +72,7 @@ const createNewMember = async ({
     throw new Error('Invalid arguments')
   }
 
-  db.groupMember.create({
+  await db.groupMember.create({
     data: {
       name,
       email,

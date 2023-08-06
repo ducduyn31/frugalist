@@ -26,7 +26,7 @@ export const billCreator = authorizedProcedure
     })
   })
 
-export const billLister = authorizedProcedure.query(async opts => {
+export const listBills = authorizedProcedure.query(async opts => {
   const { session } = opts.ctx
   if (!session?.user?.email) {
     throw new Error('Not authorized')

@@ -18,7 +18,7 @@ export const AddBillForm = () => {
 
   const billCreator = trpc.billCreator.useMutation({
     onSuccess: () => {
-      trpc.useContext().billLister.invalidate()
+      trpc.useContext().listBills.invalidate()
     },
   })
 
