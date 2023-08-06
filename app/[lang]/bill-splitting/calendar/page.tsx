@@ -11,7 +11,10 @@ export default async function CalendarEdit() {
 
   return (
     <>
-      <PageHeader namespace="bill-splitting.calendar" addAction="people/new" />
+      <PageHeader
+        namespace="bill-splitting.calendar"
+        addAction="calendar/new"
+      />
       <main className="mt-20">
         <EventCalendar initialEvents={events} />
       </main>

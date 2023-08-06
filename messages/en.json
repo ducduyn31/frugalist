@@ -163,6 +163,10 @@
             "label": "Cancel"
           }
         }
+      },
+      "PersonItem": {
+        "isGuest": "This person is a guest",
+        "isActive": "This person is currently active"
       }
     },
     "calendar": {

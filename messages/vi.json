@@ -163,6 +163,10 @@
             "label": "Hủy"
           }
         }
+      },
+      "PersonItem": {
+        "isGuest": "Là khách",
+        "isActive": "Vẫn đang sống chung"
       }
     },
     "calendar": {

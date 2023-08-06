@@ -1,6 +1,6 @@
 import React from 'react'
-import { AddBillForm } from '@/app/[lang]/bill-splitting/bills/_components/add-bill-form'
+import { AddEventForm } from '@/app/[lang]/bill-splitting/calendar/_components/add-event-from'
 
 export default function NewBill() {
-  return <AddBillForm />
+  return <AddEventForm />
 }
