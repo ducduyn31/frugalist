@@ -5,6 +5,7 @@ import { DateTime } from 'luxon'
 import { BillItemFormValues } from '@/app/[lang]/bill-splitting/bills/bill-form'
 import { FiEdit2 } from 'react-icons/fi'
 import { AiOutlineDelete } from 'react-icons/ai'
+import { trpc } from '@/trpc/trpc-client'
 
 interface Props {
   bill: Payable
@@ -12,6 +13,12 @@ interface Props {
 
 export const BillItem: React.FC<Props> = ({ bill }) => {
   const items = bill.components as unknown as BillItemFormValues[]
+  const rmBill = trpc.removeBill.useMutation({})
+
+  const removeBillHandler = () => {
+    rmBill.mutateAsync({ id: bill.id })
+  }
+
   return (
     <div className="card bordered rounded">
       <div className="card-body bg-base-300">
@@ -39,7 +46,10 @@ export const BillItem: React.FC<Props> = ({ bill }) => {
           <button className="btn btn-square btn-outline btn-primary">
             <FiEdit2 />
           </button>
-          <button className="btn btn-square btn-outline btn-secondary">
+          <button
+            className="btn btn-square btn-outline btn-secondary"
+            onClick={removeBillHandler}
+          >
             <AiOutlineDelete />
           </button>
         </div>

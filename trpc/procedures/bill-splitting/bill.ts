@@ -2,6 +2,7 @@
 import { authorizedProcedure } from '@/trpc/trpc-server'
 import { BillFormValuesSchema } from '@/app/[lang]/bill-splitting/bills/bill-form'
 import { db } from '@/lib/db'
+import * as yup from 'yup'
 
 export const billCreator = authorizedProcedure
   .input(BillFormValuesSchema)
@@ -39,3 +40,22 @@ export const listBills = authorizedProcedure.query(async opts => {
     },
   })
 })
+
+const BillIdSchema = yup.object().shape({
+  id: yup.string().required(),
+})
+
+export const removeBill = authorizedProcedure
+  .input(BillIdSchema)
+  .mutation(async ({ input, ctx }) => {
+    const { session } = ctx
+    if (!session?.user?.email) {
+      throw new Error('Not authorized')
+    }
+
+    return db.payable.delete({
+      where: {
+        id: input.id,
+      },
+    })
+  })

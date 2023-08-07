@@ -50,6 +50,12 @@
         "required": "Không thể để trống",
         "invalid": "Không hợp lệ"
       }
+    },
+    "DropdownInput": {
+      "errors": {
+        "required": "Không thể để trống",
+        "invalid": "Không hợp lệ"
+      }
     }
   },
   "login": {
@@ -173,6 +179,29 @@
       "NoCalendarState": {
         "title": "Không có ngày",
         "description": "Thêm ngày để tiếp tục nhé!"
+      },
+      "AddEventForm": {
+        "title": "Thêm ngày",
+        "description": "Thêm sự kiện",
+        "form": {
+          "name": {
+            "label": "Tên ngày",
+            "placeholder": "Ví dụ: Ngày sinh nhật"
+          },
+          "member": {
+            "label": "Chọn thành viên",
+            "placeholder": "Chọn thành viên"
+          },
+          "interval": {
+            "label": "Thời gian"
+          },
+          "submit": {
+            "label": "Thêm sự kiện"
+          },
+          "cancel": {
+            "label": "Hủy"
+          }
+        }
       }
     },
     "common": {

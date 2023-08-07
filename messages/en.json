@@ -50,6 +50,12 @@
         "required": "This field is required",
         "invalid": "This field is invalid"
       }
+    },
+    "DropdownInput": {
+      "errors": {
+        "required": "This field is required",
+        "invalid": "This field is invalid"
+      }
     }
   },
   "login": {
@@ -173,6 +179,29 @@
       "NoCalendarState": {
         "title": "No Calendar",
         "description": "You don't have any excluded days yet. Add one now!"
+      },
+      "AddEventForm": {
+        "title": "Add event",
+        "description": "Add event",
+        "form": {
+          "name": {
+            "label": "Name",
+            "placeholder": "Eg: Birthday"
+          },
+          "member": {
+            "label": "For member",
+            "placeholder": "Select"
+          },
+          "interval": {
+            "label": "Time"
+          },
+          "submit": {
+            "label": "Add"
+          },
+          "cancel": {
+            "label": "Cancel"
+          }
+        }
       }
     },
     "common": {
