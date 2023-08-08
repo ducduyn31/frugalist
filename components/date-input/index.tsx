@@ -67,7 +67,7 @@ export const DateInput = React.forwardRef(function DateInput(
           type="button"
           disabled={rest.disabled}
           className="btn btn-square"
-          onClick={() => setShowDatePicker(!showDatePicker)}
+          onClick={() => setShowDatePicker(prev => !prev)}
         >
           <AiOutlineCalendar />
         </button>

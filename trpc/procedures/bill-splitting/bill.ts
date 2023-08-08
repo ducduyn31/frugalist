@@ -1,7 +1,7 @@
 'use server'
 import { authorizedProcedure } from '@/trpc/trpc-server'
 import { BillFormValuesSchema } from '@/app/[lang]/bill-splitting/bills/bill-form'
-import { db } from '@/lib/db'
+import db from '@/lib/db'
 import * as yup from 'yup'
 
 export const billCreator = authorizedProcedure

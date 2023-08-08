@@ -24,6 +24,10 @@
           "title": "Calendar",
           "subtitle": "Select which days to include in the calculation",
           "button": "Add Excluded Days"
+        },
+        "result": {
+          "title": "Result",
+          "subtitle": "View the result of the calculation"
         }
       }
     },
@@ -203,6 +207,9 @@
           }
         }
       }
+    },
+    "result": {
+
     },
     "common": {
       "stepper": {

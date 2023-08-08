@@ -24,6 +24,10 @@
           "title": "Lịch trình",
           "subtitle": "Chọn những ngày bạn không muốn chia tiền",
           "button": "Thêm ngày"
+        },
+        "result": {
+          "title": "Kết quả",
+          "subtitle": "Kết quả chia tiền"
         }
       }
     },

@@ -96,7 +96,7 @@ export const DateRangeInput = React.forwardRef(function DateRangeInput(
           type="button"
           className="btn btn-square"
           disabled={rest.disabled}
-          onClick={() => setShowDatePicker(!showDatePicker)}
+          onClick={() => setShowDatePicker(prev => !prev)}
         >
           <AiOutlineCalendar />
         </button>

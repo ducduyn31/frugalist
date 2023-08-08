@@ -3,7 +3,7 @@ import {
   PersonFormValues,
   PersonFormValuesSchema,
 } from '@/app/[lang]/bill-splitting/people/person-form'
-import { db } from '@/lib/db'
+import db from '@/lib/db'
 import { Prisma } from '.prisma/client'
 import GroupMemberCreateInput = Prisma.GroupMemberCreateInput
 
