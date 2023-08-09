@@ -14,7 +14,11 @@ export function middleware(req: NextRequest) {
   return i18nMiddleware(req)
 }
 
+// export default withAuth(middleware, {
+//   pages: authPages,
+// })
+
 export const config = {
   // Skip all paths that should not be internationalized
-  matcher: ['/((?!api|_next|__turbopack|favicon|.*\\..*).*)'],
+  matcher: ['/((?!api|_next/static|_next/image|favicon.ico).*)'],
 }

@@ -2,6 +2,7 @@ import EmailProvider from 'next-auth/providers/email'
 import { PrismaAdapter } from '@auth/prisma-adapter'
 import { NextAuthOptions } from 'next-auth'
 import db from '@/lib/db'
+import { authPages } from '@/lib/auth-pages'
 
 export const authOptions: NextAuthOptions = {
   providers: [
@@ -17,8 +18,9 @@ export const authOptions: NextAuthOptions = {
       from: process.env.EMAIL_FROM,
     }),
   ],
-  adapter: PrismaAdapter(db) as any,
-  pages: {
-    signIn: '/login',
+  session: {
+    strategy: 'jwt',
   },
+  adapter: PrismaAdapter(db) as any,
+  pages: authPages,
 }
