@@ -49,10 +49,17 @@ export const splitBill = authorizedProcedure.query(async ({ ctx }) => {
     }
 
     fixedComponents.forEach(component => {
-      result[member.id].payComponents.push({
-        name: component.name,
-        amount: component.amount / nonGuestMemberCount,
-      })
+      if (
+        Interval.fromDateTimes(
+          member.fromDate ?? new Date(),
+          member.toDate ?? new Date(),
+        ).overlaps(Interval.fromDateTimes(component.fromDate, component.toDate))
+      ) {
+        result[member.id].payComponents.push({
+          name: component.name,
+          amount: component.amount / nonGuestMemberCount,
+        })
+      }
     })
   })
 

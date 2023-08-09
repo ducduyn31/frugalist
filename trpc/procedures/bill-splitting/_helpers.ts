@@ -80,6 +80,8 @@ interface FixedComponent {
   name: string
   amount: number
   billName: string
+  fromDate: Date
+  toDate: Date
 }
 
 interface VariableComponent {
@@ -108,7 +110,12 @@ export const getFixedAndVariableBillComponents = async (ownerEmail: string) => {
 
     components.forEach(component => {
       if (component.type === 'fixed') {
-        fixedComponents.push({ ...component, billName: bill.name })
+        fixedComponents.push({
+          ...component,
+          billName: bill.name,
+          fromDate: bill.fromDate,
+          toDate: bill.toDate,
+        })
       } else {
         variableComponents.push({
           ...component,
