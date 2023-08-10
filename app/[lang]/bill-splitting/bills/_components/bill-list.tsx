@@ -49,7 +49,7 @@ export const BillList: React.FC<Props> = ({ initialBills }) => {
     })) ?? []
 
   const openEditBillModal = (row: Row<BillItemView>) => {
-    router.push(`/bill-splitting/bills/${row.original.id}/edit`)
+    router.push(`/bill-splitting/bills/edit/${row.original.id}`)
   }
 
   return (
