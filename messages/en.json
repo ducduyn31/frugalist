@@ -135,6 +135,14 @@
             "label": "Cancel"
           }
         }
+      },
+      "table": {
+        "columns": {
+            "name": "Name",
+            "amount": "Amount",
+            "fromDate": "From",
+            "toDate": "To"
+        }
       }
     },
     "people": {
