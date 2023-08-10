@@ -16,7 +16,8 @@ const RemoveBill: React.FC<Props> = ({ billId }) => {
     },
   })
 
-  const removeBillHandler = () => {
+  const removeBillHandler = (event: React.MouseEvent) => {
+    event.stopPropagation()
     rmBill.mutateAsync({ id: billId })
   }
 
@@ -31,8 +32,8 @@ const RemoveBill: React.FC<Props> = ({ billId }) => {
 }
 
 export const mapRowToRemoveButton = (
-  row: CellContext<BillItemView, unknown>,
+  ctx: CellContext<BillItemView, unknown>,
 ) => {
-  const toRemoveId = row.row.original.id
+  const toRemoveId = ctx.row.original.id
   return <RemoveBill billId={toRemoveId} />
 }

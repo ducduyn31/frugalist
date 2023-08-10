@@ -9,14 +9,15 @@ import { ClassNames, FieldOptions } from '@/components/table/types'
 import { BillItemFormValues } from '@/app/[lang]/bill-splitting/bills/bill-form'
 import { mapRowToRemoveButton } from '@/app/[lang]/bill-splitting/bills/_components/remove-bill'
 import { BillItemView } from '@/app/[lang]/bill-splitting/bills/types'
+import { Row } from '@tanstack/table-core'
+import { useRouter } from 'next/navigation'
 
 interface Props {
   initialBills: Payable[]
 }
 
 const tableCssClassNames: ClassNames = {
-  tbody: '[&>*:nth-child(even)]:bg-base-200/20',
-  tableCellContent: 'truncate',
+  tableCellContent: 'truncate max-w-60',
 }
 
 const tableOptions: FieldOptions<BillItemView> = {
@@ -32,6 +33,7 @@ const calculateTotal = (billsComponents: any) => {
 
 export const BillList: React.FC<Props> = ({ initialBills }) => {
   const { data, isLoading } = trpc.listBills.useQuery()
+  const router = useRouter()
 
   if (initialBills.length === 0 && data?.length === 0) {
     return <NoBillState />
@@ -46,6 +48,10 @@ export const BillList: React.FC<Props> = ({ initialBills }) => {
       toDate: DateTime.fromISO(bill.toDate).toFormat('dd/MM/yyyy'),
     })) ?? []
 
+  const openEditBillModal = (row: Row<BillItemView>) => {
+    router.push(`/bill-splitting/bills/${row.original.id}/edit`)
+  }
+
   return (
     <Table<BillItemView>
       data={bills}
@@ -54,6 +60,7 @@ export const BillList: React.FC<Props> = ({ initialBills }) => {
       actions={mapRowToRemoveButton}
       fieldOptions={tableOptions}
       loading={isLoading}
+      onRowClick={openEditBillModal}
     />
   )
 }

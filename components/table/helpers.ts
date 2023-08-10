@@ -1,5 +1,6 @@
 export const cssName =
-  (className: string | undefined) =>
+  (...className: (string | undefined)[]) =>
   (previousClasses: TemplateStringsArray) => {
-    return previousClasses[0] + (className ? ` ${className}` : '')
+    const concatClassNames = className.filter(name => !!name).join(' ')
+    return [previousClasses[0], concatClassNames].join(' ')
   }

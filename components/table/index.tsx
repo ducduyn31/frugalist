@@ -11,6 +11,7 @@ import { TableRow } from '@/components/table/row'
 import { ClassNames, FieldOptions } from '@/components/table/types'
 import { cssName } from '@/components/table/helpers'
 import { LoadingSkeleton } from '@/components/table/loading'
+import { Row } from '@tanstack/table-core'
 
 interface Props<T extends Record<string, any>> {
   data: T[]
@@ -18,6 +19,7 @@ interface Props<T extends Record<string, any>> {
   fieldOptions?: FieldOptions<T>
   classNames?: ClassNames
   actions?: (row: CellContext<T, unknown>) => React.ReactElement | null
+  onRowClick?: (row: Row<T>) => void
   loading?: boolean
 }
 
@@ -28,6 +30,7 @@ export function Table<T extends Record<string, any>>({
   namespace,
   fieldOptions,
   classNames,
+  onRowClick,
 }: Props<T>): React.ReactElement<Props<T>> | null {
   const t = useTranslations(namespace ?? 'common.Table')
 
@@ -63,7 +66,6 @@ export function Table<T extends Record<string, any>>({
     columns,
     data,
     getCoreRowModel: getCoreRowModel<T>(),
-    debugAll: true,
   })
 
   if (loading) {
@@ -79,12 +81,14 @@ export function Table<T extends Record<string, any>>({
       <table className={cssName(classNames?.table)`w-full`}>
         <TableHeader table={table} classNames={classNames} />
         <tbody className={cssName(classNames?.tbody)`border-t border-base-100`}>
-          {table.getRowModel().rows.map(row => (
+          {table.getRowModel().rows.map((row, id) => (
             <TableRow
               row={row}
               key={row.id}
               classNames={classNames}
+              className={id % 2 === 0 ? 'bg-base-200/20' : undefined}
               actions={actions}
+              onClick={() => onRowClick?.(row)}
             />
           ))}
         </tbody>

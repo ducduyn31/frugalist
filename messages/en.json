@@ -97,9 +97,11 @@
         "title": "No Bill",
         "description": "You don't have any bills yet. Add one now!"
       },
-      "AddBillForm": {
+      "EditBillForm": {
         "title": "Add Bill",
+        "editTitle": "Edit Bill",
         "description": "Add a new bill to the list",
+        "editDescription": "Edit the bill",
         "addItemSection": {
           "title": "Add an item",
           "description": "Add an item to the bill",
@@ -130,6 +132,9 @@
           },
           "submit": {
             "label": "Add Bill"
+          },
+          "save": {
+            "label": "Save Bill"
           },
           "cancel": {
             "label": "Cancel"

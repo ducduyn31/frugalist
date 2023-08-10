@@ -1,7 +1,7 @@
 'use client'
 import React from 'react'
-import { AddBillForm } from '@/app/[lang]/bill-splitting/bills/_components/add-bill-form'
+import { EditBillForm } from '@/app/[lang]/bill-splitting/bills/_components/edit-bill-form'
 
 export default function NewBill() {
-  return <AddBillForm />
+  return <EditBillForm />
 }

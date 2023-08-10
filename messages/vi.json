@@ -97,9 +97,11 @@
         "title": "Không có hoá đơn",
         "description": "Thêm hoá đơn để tiếp tục nhé!"
       },
-      "AddBillForm": {
+      "EditBillForm": {
         "title": "Thêm hoá đơn",
+        "editTitle": "Sửa hoá đơn",
         "description": "Thêm hoá đơn của bạn",
+        "editDescription": "Sửa hoá đơn của bạn",
         "addItemSection": {
           "title": "Thêm mục",
           "description": "Thêm mục vào hoá đơn",
@@ -131,9 +133,21 @@
           "submit": {
             "label": "Thêm hoá đơn"
           },
+          "save": {
+            "label": "Lưu"
+          },
           "cancel": {
             "label": "Hủy"
           }
+        }
+      },
+      "table": {
+        "columns": {
+          "name": "Tên",
+          "amount": "Số tiền",
+          "fromDate": "Từ Ngày",
+          "toDate": "Đến Ngày",
+          "actions": "Hành Động"
         }
       }
     },

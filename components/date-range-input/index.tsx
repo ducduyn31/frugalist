@@ -1,4 +1,4 @@
-import React, { useImperativeHandle, useMemo, useRef, useState } from 'react'
+import React, { useCallback, useEffect, useMemo, useRef, useState } from 'react'
 import 'react-date-range/dist/styles.css'
 import 'react-date-range/dist/theme/default.css'
 import {
@@ -13,12 +13,14 @@ import { ChangeHandler } from 'react-hook-form'
 import { AiOutlineCalendar } from 'react-icons/ai'
 import { DateTime } from 'luxon'
 import './override.css'
+import { DateRangeFormValues } from '@/components/date-range-input/form'
 
 interface Props extends React.HTMLProps<HTMLInputElement> {
   label: string
   errorMessage?: string
   name: string
   onChange: ChangeHandler
+  defaultDate?: DateRangeFormValues
 }
 
 const dateRangeCustomizedCss: ClassNames = {
@@ -29,12 +31,18 @@ const dateRangeCustomizedCss: ClassNames = {
 }
 
 export const DateRangeInput = React.forwardRef(function DateRangeInput(
-  { label, errorMessage, onChange, name, ...rest }: Props,
+  { label, errorMessage, onChange, name, defaultDate, ...rest }: Props,
   ref,
 ) {
   const t = useTranslations('common.DateRangeInput')
-  const inputRef = useRef(null)
-  useImperativeHandle(ref, () => inputRef as unknown as HTMLInputElement, [])
+  const inputRef = useRef<HTMLInputElement | null>(null)
+  const defaultDateValueUpdatedRef = useRef(false)
+  const registerRef = ref as (instance: HTMLInputElement | null) => void
+
+  useEffect(() => {
+    registerRef(inputRef.current)
+  }, [registerRef])
+
   const [range, setRange] = useState<DateRangeType[]>([
     {
       startDate: undefined,
@@ -50,19 +58,35 @@ export const DateRangeInput = React.forwardRef(function DateRangeInput(
     }
   }
 
-  const updateDateRange = (range: RangeKeyDict) => {
-    setRange([range.selection])
-    onChange({
-      type: 'change',
-      target: {
-        name: `${name}`,
-        value: {
-          from: range.selection.startDate,
-          to: range.selection.endDate,
+  const updateDateRange = useCallback(
+    (range: RangeKeyDict) => {
+      setRange([range.selection])
+      onChange({
+        type: 'change',
+        target: {
+          name: `${name}`,
+          value: {
+            from: range.selection.startDate,
+            to: range.selection.endDate,
+          },
         },
-      },
-    })
-  }
+      })
+    },
+    [name, onChange],
+  )
+
+  useEffect(() => {
+    if (!defaultDateValueUpdatedRef.current && defaultDate?.from) {
+      updateDateRange({
+        selection: {
+          startDate: defaultDate?.from,
+          endDate: defaultDate?.to,
+          key: 'selection',
+        },
+      })
+      defaultDateValueUpdatedRef.current = true
+    }
+  }, [defaultDate?.from, defaultDate?.to, updateDateRange])
 
   const dateRangeShown = useMemo(() => {
     const formatDate = (d: Date) =>
@@ -83,7 +107,6 @@ export const DateRangeInput = React.forwardRef(function DateRangeInput(
       </label>
       <div className="input-group">
         <input
-          ref={inputRef}
           type="text"
           className="input input-bordered w-full relative"
           placeholder="DD/MM/YYYY - DD/MM/YYYY"

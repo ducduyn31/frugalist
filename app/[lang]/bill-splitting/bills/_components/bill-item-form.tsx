@@ -10,7 +10,7 @@ interface Props {
 }
 
 export const BillItemForm: React.FC<Props> = ({ control }) => {
-  const t = useTranslations('bill-splitting.bills.AddBillForm')
+  const t = useTranslations('bill-splitting.bills.EditBillForm')
 
   const { errors } = useFormState({ control })
   const { append, fields, remove } = useFieldArray<BillFormValues>({

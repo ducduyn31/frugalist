@@ -10,7 +10,6 @@ import { useRouter } from 'next/navigation'
 import { TextInput } from '@/components/text-input'
 import { DropdownInput } from '@/components/dropdown-input'
 import { GroupMember } from '@prisma/client'
-import { DevTool } from '@hookform/devtools'
 import { DateRangeInput } from '@/components/date-range-input'
 import { yupResolver } from '@hookform/resolvers/yup'
 import { trpc } from '@/trpc/trpc-client'
@@ -42,7 +41,6 @@ export const AddEventForm: React.FC<Props> = ({ membersPromise }) => {
     register,
     reset,
     watch,
-    control,
     formState: { errors },
   } = useForm<EventFormValues>({
     resolver: yupResolver(EventFormValuesSchema),
@@ -98,7 +96,6 @@ export const AddEventForm: React.FC<Props> = ({ membersPromise }) => {
           </button>
         </div>
       </form>
-      <DevTool control={control} />
       <form method="dialog" className="modal-backdrop">
         <button ref={cancelButtonRef} onClick={cancelForm}>
           close
