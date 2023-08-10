@@ -8,7 +8,6 @@ import Loading from '@/app/[lang]/bill-splitting/loading'
 import { DateTime } from 'luxon'
 import { ClassNames } from '@/components/table/types'
 import { BillItemFormValues } from '@/app/[lang]/bill-splitting/bills/bill-form'
-import { JSONValue } from 'superjson/src/types'
 
 interface Props {
   initialBills: Payable[]
@@ -26,7 +25,7 @@ const tableCssClassNames: ClassNames = {
   tableCellContent: 'max-w-[200px] truncate',
 }
 
-const calculateTotal = (billsComponents: JSONValue) => {
+const calculateTotal = (billsComponents: any) => {
   const components = billsComponents as unknown as BillItemFormValues[]
   return components.reduce((acc, b) => acc + b.amount, 0).toFixed(2)
 }
