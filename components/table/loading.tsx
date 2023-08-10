@@ -62,7 +62,7 @@ export const LoadingSkeleton: React.FC<Props> = ({ classNames }) => {
       <div
         className={cssName(
           classNames?.tbody,
-        )`border-t border-base-100 [&>*:nth-child(even)]:bg-base-200/20`}
+        )`border-t border-base-100 [&>*:nth-child(odd)]:bg-base-200/20`}
       >
         {bodyWidths.current.map((row, i) => (
           <div
