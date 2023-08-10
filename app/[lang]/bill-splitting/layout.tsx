@@ -19,7 +19,7 @@ export default async function BillSplittingLayout({
                 key={step.key}
                 className={`step ${index <= currentStep ? 'step-primary' : ''}`}
               >
-                <Link href={`${step.path}`} prefetch>
+                <Link href={`${step.path}`}>
                   <span className="text-base-content text-sm font-normal">
                     <T
                       ns="bill-splitting.common"
