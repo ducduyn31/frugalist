@@ -16,9 +16,11 @@ import { trpc } from '@/trpc/trpc-client'
 export const AddBillForm = () => {
   const t = useTranslations('bill-splitting.bills.AddBillForm')
 
+  const utils = trpc.useContext()
+
   const billCreator = trpc.billCreator.useMutation({
     onSuccess: () => {
-      trpc.useContext().listBills.invalidate()
+      utils.listBills.invalidate()
     },
   })
 

@@ -16,7 +16,12 @@ import { trpc } from '@/trpc/trpc-client'
 
 export const AddPersonForm: React.FC = () => {
   const t = useTranslations('bill-splitting.people.AddPersonForm')
-  const memberCreator = trpc.createMember.useMutation()
+  const utils = trpc.useContext()
+  const memberCreator = trpc.createMember.useMutation({
+    onSuccess: () => {
+      utils.listMembers.invalidate()
+    },
+  })
   const cancelButtonRef = useRef<HTMLButtonElement>(null)
   const router = useRouter()
   const {

@@ -27,9 +27,10 @@ export const AddEventForm: React.FC<Props> = ({ membersPromise }) => {
     key: member.id,
   }))
 
+  const utils = trpc.useContext()
   const createEventRPC = trpc.createEvent.useMutation({
     onSuccess: () => {
-      trpc.useContext().listEvents.invalidate()
+      utils.listEvents.invalidate()
     },
   })
 

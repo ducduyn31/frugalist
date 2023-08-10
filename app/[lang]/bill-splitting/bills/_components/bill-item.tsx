@@ -13,7 +13,12 @@ interface Props {
 
 export const BillItem: React.FC<Props> = ({ bill }) => {
   const items = bill.components as unknown as BillItemFormValues[]
-  const rmBill = trpc.removeBill.useMutation({})
+  const utils = trpc.useContext()
+  const rmBill = trpc.removeBill.useMutation({
+    onSuccess: () => {
+      utils.listBills.invalidate()
+    },
+  })
 
   const removeBillHandler = () => {
     rmBill.mutateAsync({ id: bill.id })
