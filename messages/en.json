@@ -191,6 +191,16 @@
       "PersonItem": {
         "isGuest": "This person is a guest",
         "isActive": "This person is currently active"
+      },
+      "table": {
+        "columns": {
+          "name": "Name",
+          "active": "Active",
+          "guest": "Guest",
+          "fromDate": "From",
+          "toDate": "To",
+          "actions": "Actions"
+        }
       }
     },
     "calendar": {

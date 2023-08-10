@@ -46,7 +46,14 @@ export const BillList: React.FC<Props> = ({ initialBills }) => {
       amount: `$${calculateTotal(bill.components)}`,
       fromDate: DateTime.fromISO(bill.fromDate).toFormat('dd/MM/yyyy'),
       toDate: DateTime.fromISO(bill.toDate).toFormat('dd/MM/yyyy'),
-    })) ?? []
+    })) ??
+    initialBills.map(bill => ({
+      id: bill.id,
+      name: bill.name,
+      amount: `$${calculateTotal(bill.components)}`,
+      fromDate: DateTime.fromJSDate(bill.fromDate).toFormat('dd/MM/yyyy'),
+      toDate: DateTime.fromJSDate(bill.toDate).toFormat('dd/MM/yyyy'),
+    }))
 
   const openEditBillModal = (row: Row<BillItemView>) => {
     router.push(`/bill-splitting/bills/edit/${row.original.id}`)

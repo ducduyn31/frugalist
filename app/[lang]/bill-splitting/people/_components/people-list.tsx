@@ -2,11 +2,28 @@
 import React from 'react'
 import { GroupMember } from '@prisma/client'
 import { trpc } from '@/trpc/trpc-client'
-import { PersonItem } from '@/app/[lang]/bill-splitting/people/_components/person-item'
 import { NoPersonState } from '@/app/[lang]/bill-splitting/people/_components/no-person-state'
+import { Table } from '@/components/table'
+import {
+  mapMemberRowViewFromGroupMember,
+  mapMemberRowViewFromQuery,
+  MemberRowView,
+} from '@/app/[lang]/bill-splitting/people/types'
+import { ClassNames, FieldOptions } from '@/components/table/types'
 
 interface Props {
   initialPeople: GroupMember[]
+}
+
+const tableCssClassNames: ClassNames = {}
+
+const tableOptions: FieldOptions<MemberRowView> = {
+  id: {
+    hidden: true,
+  },
+  isGuest: {
+    hidden: true,
+  },
 }
 
 export const PeopleList: React.FC<Props> = ({ initialPeople }) => {
@@ -16,21 +33,17 @@ export const PeopleList: React.FC<Props> = ({ initialPeople }) => {
     return <NoPersonState />
   }
 
+  const members: MemberRowView[] =
+    data?.map(mapMemberRowViewFromQuery) ??
+    initialPeople.map(mapMemberRowViewFromGroupMember)
+
   return (
-    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
-      {isLoading
-        ? initialPeople.map(person => (
-            <PersonItem person={person} key={person.id} />
-          ))
-        : data
-            ?.map(person => ({
-              ...person,
-              fromDate: person.fromDate ? new Date(person.fromDate) : null,
-              toDate: person.toDate ? new Date(person.toDate) : null,
-              createdAt: new Date(person.createdAt),
-              updatedAt: new Date(person.updatedAt),
-            }))
-            .map(person => <PersonItem person={person} key={person.id} />)}
-    </div>
+    <Table<MemberRowView>
+      namespace="bill-splitting.people.table"
+      data={members}
+      loading={isLoading}
+      classNames={tableCssClassNames}
+      fieldOptions={tableOptions}
+    />
   )
 }

@@ -191,6 +191,16 @@
       "PersonItem": {
         "isGuest": "Là khách",
         "isActive": "Vẫn đang sống chung"
+      },
+      "table": {
+        "columns": {
+          "name": "Tên",
+          "isActive": "Vẫn đang sống chung",
+          "isGuest": "Là khách",
+          "fromDate": "Từ Ngày",
+          "toDate": "Đến Ngày",
+          "actions": "Hành Động"
+        }
       }
     },
     "calendar": {
