@@ -1,6 +1,8 @@
 export type TDataRoot = Record<string, any>
 
-export interface FieldOptions {}
+interface FieldOption {
+  hidden?: boolean
+}
 
 const classNames = [
   'table',
@@ -11,6 +13,12 @@ const classNames = [
   'tableCell',
   'tableCellTooltip',
   'tableCellContent',
+  'wrapper',
+  'loadingWrapper',
 ] as const
+
+export type FieldOptions<T extends TDataRoot> = Partial<
+  Record<keyof T, FieldOption>
+>
 
 export type ClassNames = Partial<Record<(typeof classNames)[number], string>>

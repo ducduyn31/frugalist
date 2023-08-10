@@ -138,10 +138,11 @@
       },
       "table": {
         "columns": {
-            "name": "Name",
-            "amount": "Amount",
-            "fromDate": "From",
-            "toDate": "To"
+          "name": "Name",
+          "amount": "Amount",
+          "fromDate": "From",
+          "toDate": "To",
+          "actions": "Actions"
         }
       }
     },
@@ -217,7 +218,6 @@
       }
     },
     "result": {
-
     },
     "common": {
       "stepper": {
