@@ -23,6 +23,7 @@ const RemoveBill: React.FC<Props> = ({ billId }) => {
 
   return (
     <button
+      disabled={rmBill.isLoading}
       className="btn btn-square btn-outline btn-secondary"
       onClick={removeBillHandler}
     >
