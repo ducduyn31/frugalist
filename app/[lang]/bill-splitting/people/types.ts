@@ -4,12 +4,15 @@ import { DateTime } from 'luxon'
 export interface MemberRowView {
   id: string
   name: string
-  isGuest: boolean
+  memberType: string
   fromDate: string
   toDate: string
 }
 
-type UseQueryGroupMember = Pick<GroupMember, 'id' | 'name' | 'isGuest'> & {
+type UseQueryGroupMember = Pick<
+  GroupMember,
+  'id' | 'name' | 'isGuest' | 'isActive'
+> & {
   fromDate: string | null
   toDate: string | null
 }
@@ -19,7 +22,11 @@ export const mapMemberRowViewFromQuery = (
 ): MemberRowView => ({
   id: member.id,
   name: member.name,
-  isGuest: member.isGuest,
+  memberType: member.isGuest
+    ? 'guest'
+    : member.isActive
+    ? 'active'
+    : 'inactive',
   fromDate: member.fromDate
     ? DateTime.fromISO(member.fromDate).toFormat('dd/MM/yyyy')
     : '',
@@ -33,7 +40,11 @@ export const mapMemberRowViewFromGroupMember = (
 ): MemberRowView => ({
   id: member.id,
   name: member.name,
-  isGuest: member.isGuest,
+  memberType: member.isGuest
+    ? 'guest'
+    : member.isActive
+    ? 'active'
+    : 'inactive',
   fromDate: member.fromDate
     ? DateTime.fromJSDate(member.fromDate).toFormat('dd/MM/yyyy')
     : '',

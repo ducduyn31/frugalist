@@ -200,6 +200,11 @@
           "fromDate": "Từ Ngày",
           "toDate": "Đến Ngày",
           "actions": "Hành Động"
+        },
+        "groups": {
+          "guest": "Khách",
+          "active": "Thành viên",
+          "inactive": "Không còn sống chung"
         }
       }
     },

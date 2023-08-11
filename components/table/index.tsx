@@ -1,18 +1,22 @@
-import React, { useMemo } from 'react'
+import React, { useMemo, useState } from 'react'
 import {
   CellContext,
   ColumnDef,
   getCoreRowModel,
+  getGroupedRowModel,
   useReactTable,
 } from '@tanstack/react-table'
 import { useTranslations } from 'use-intl'
 import { TableHeader } from '@/components/table/header'
-import { TableRow } from '@/components/table/row'
+import { TableRow } from '@/components/table/row/row'
 import { ClassNames, FieldOptions } from '@/components/table/types'
-import { cssName } from '@/components/table/helpers'
+import {
+  cssName,
+  getDataColumns,
+  getGroupIdentifiers,
+} from '@/components/table/helpers'
 import { LoadingSkeleton } from '@/components/table/loading'
 import { Row } from '@tanstack/table-core'
-import { getDataColumns } from '@/components/table/helper'
 
 interface Props<T extends Record<string, any>> {
   data: T[]
@@ -34,6 +38,7 @@ export function Table<T extends Record<string, any>>({
   onRowClick,
 }: Props<T>): React.ReactElement<Props<T>> | null {
   const t = useTranslations(namespace ?? 'common.Table')
+  const [grouping, setGrouping] = useState([] as string[])
 
   const columns: ColumnDef<T>[] = useMemo(() => {
     if (data.length === 0) {
@@ -51,6 +56,16 @@ export function Table<T extends Record<string, any>>({
       accessorKey: key,
     }))
 
+    const groupIdentifer = getGroupIdentifiers(fieldOptions)?.[0]
+
+    if (!!groupIdentifer) {
+      dataColumns[0] = {
+        ...dataColumns[0],
+        getGroupingValue: row => row[groupIdentifer],
+      }
+      if (dataColumns[0].id) setGrouping([dataColumns[0].id])
+    }
+
     if (!!actions) {
       dataColumns.push({
         id: 'actions',
@@ -63,9 +78,14 @@ export function Table<T extends Record<string, any>>({
   }, [actions, data, fieldOptions, t])
 
   const table = useReactTable({
+    state: {
+      grouping,
+      expanded: true,
+    },
     columns,
     data,
     getCoreRowModel: getCoreRowModel<T>(),
+    getGroupedRowModel: getGroupedRowModel<T>(),
   })
 
   if (loading) {
@@ -83,6 +103,7 @@ export function Table<T extends Record<string, any>>({
         <tbody className={cssName(classNames?.tbody)`border-t border-base-100`}>
           {table.getRowModel().rows.map((row, id) => (
             <TableRow
+              namespace={namespace}
               row={row}
               key={row.id}
               classNames={classNames}

@@ -195,11 +195,14 @@
       "table": {
         "columns": {
           "name": "Name",
-          "active": "Active",
-          "guest": "Guest",
           "fromDate": "From",
           "toDate": "To",
           "actions": "Actions"
+        },
+        "groups": {
+          "guest": "Guests",
+          "active": "Active members",
+          "inactive": "Inactive members"
         }
       }
     },

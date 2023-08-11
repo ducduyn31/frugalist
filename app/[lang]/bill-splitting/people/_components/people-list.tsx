@@ -21,8 +21,8 @@ const tableOptions: FieldOptions<MemberRowView> = {
   id: {
     hidden: true,
   },
-  isGuest: {
-    hidden: true,
+  memberType: {
+    isGroupIdentifier: true,
   },
 }
 

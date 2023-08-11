@@ -1,17 +1,16 @@
 import React from 'react'
-import { Row } from '@tanstack/table-core'
-import { ClassNames, TDataRoot } from '@/components/table/types'
-import { CellContext, flexRender } from '@tanstack/react-table'
 import { cssName } from '@/components/table/helpers'
+import { flexRender } from '@tanstack/react-table'
+import { ClassNames, TDataRoot } from '@/components/table/types'
+import { Row } from '@tanstack/table-core'
 
 interface Props<T extends TDataRoot>
   extends React.HTMLProps<HTMLTableRowElement> {
-  row: Row<T>
-  actions?: (row: CellContext<T, unknown>) => React.ReactElement | null
   classNames?: ClassNames
+  row: Row<T>
 }
 
-export function TableRow<T extends TDataRoot>({
+export function TableDataRow<T extends TDataRoot>({
   row,
   classNames,
   className,

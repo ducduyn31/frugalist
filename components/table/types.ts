@@ -16,6 +16,8 @@ const classNames = [
   'tableCellContent',
   'wrapper',
   'loadingWrapper',
+  'groupedRow',
+  'groupedCell',
 ] as const
 
 export type FieldOptions<T extends TDataRoot> = Partial<
