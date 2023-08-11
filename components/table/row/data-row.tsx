@@ -7,6 +7,7 @@ import { Row } from '@tanstack/table-core'
 interface Props<T extends TDataRoot>
   extends React.HTMLProps<HTMLTableRowElement> {
   classNames?: ClassNames
+  onRowClick?: (row: Row<T>) => void
   row: Row<T>
 }
 
@@ -14,6 +15,7 @@ export function TableDataRow<T extends TDataRoot>({
   row,
   classNames,
   className,
+  onRowClick,
   ...rest
 }: Props<T>) {
   return (
@@ -22,6 +24,7 @@ export function TableDataRow<T extends TDataRoot>({
         classNames?.tableRow,
         className,
       )`hover:bg-base-300 cursor-pointer`}
+      onClick={() => onRowClick?.(row)}
       {...rest}
     >
       {row.getVisibleCells().map(cell => (

@@ -35,7 +35,7 @@ export function Table<T extends Record<string, any>>({
   namespace,
   fieldOptions,
   classNames,
-  onRowClick,
+  ...rest
 }: Props<T>): React.ReactElement<Props<T>> | null {
   const t = useTranslations(namespace ?? 'common.Table')
   const [grouping, setGrouping] = useState([] as string[])
@@ -109,7 +109,7 @@ export function Table<T extends Record<string, any>>({
               classNames={classNames}
               className={id % 2 === 0 ? 'bg-base-200/20' : undefined}
               actions={actions}
-              onClick={() => onRowClick?.(row)}
+              {...rest}
             />
           ))}
         </tbody>

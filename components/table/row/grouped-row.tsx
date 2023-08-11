@@ -10,6 +10,7 @@ interface Props<T extends TDataRoot>
   classNames?: ClassNames
   row: Row<T>
   namespace?: string
+  onRowClick?: (row: Row<T>) => void
 }
 
 export function GroupedRow<T extends TDataRoot>({
