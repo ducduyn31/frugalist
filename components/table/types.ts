@@ -2,6 +2,7 @@ export type TDataRoot = Record<string, any>
 
 interface FieldOption {
   hidden?: boolean
+  isGroupIdentifier?: boolean
 }
 
 const classNames = [

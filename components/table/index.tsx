@@ -12,6 +12,7 @@ import { ClassNames, FieldOptions } from '@/components/table/types'
 import { cssName } from '@/components/table/helpers'
 import { LoadingSkeleton } from '@/components/table/loading'
 import { Row } from '@tanstack/table-core'
+import { getDataColumns } from '@/components/table/helper'
 
 interface Props<T extends Record<string, any>> {
   data: T[]
@@ -39,17 +40,16 @@ export function Table<T extends Record<string, any>>({
       return []
     }
 
-    const hiddenColumns = Object.keys(fieldOptions ?? {}).filter(
-      key => fieldOptions?.[key]?.hidden,
-    )
+    const dataColumnNames = getDataColumns({
+      fieldOptions,
+      sampleData: data[0],
+    })
 
-    const dataColumns: ColumnDef<T>[] = Object.keys(data[0])
-      .filter(key => !hiddenColumns.includes(key))
-      .map(key => ({
-        id: key,
-        header: t(`columns.${key}`),
-        accessorKey: key,
-      }))
+    const dataColumns: ColumnDef<T>[] = dataColumnNames.map(key => ({
+      id: key,
+      header: t(`columns.${key}`),
+      accessorKey: key,
+    }))
 
     if (!!actions) {
       dataColumns.push({
