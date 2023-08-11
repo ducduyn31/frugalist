@@ -48,9 +48,9 @@ export const LoadingSkeleton: React.FC<Props> = ({ classNames }) => {
       )`rounded-box bg-white dark:bg-base-300 animate-pulse`}
     >
       <div className={cssName(classNames?.table)`w-full grid grid-cols-3`}>
-        {headerWidths.current.map(width => (
+        {headerWidths.current.map((width, index) => (
           <div
-            key={width}
+            key={`${index}-${width}`}
             className={cssName(
               classNames?.headerCell,
             )`pr-6 py-6 first-of-type:pl-6 last-of-type:pr-6 w-60`}
@@ -69,9 +69,9 @@ export const LoadingSkeleton: React.FC<Props> = ({ classNames }) => {
             key={i}
             className={cssName(classNames?.table)`w-full grid grid-cols-3`}
           >
-            {row.map(width => (
+            {row.map((width, index) => (
               <div
-                key={width}
+                key={`${index}-${width}`}
                 className={cssName(
                   classNames?.headerCell,
                 )`pr-6 py-6 first-of-type:pl-6 last-of-type:pr-6 w-60`}

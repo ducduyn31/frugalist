@@ -16,6 +16,7 @@ export function GroupedRow<T extends TDataRoot>({
   row,
   classNames,
   namespace,
+  ...rest
 }: Props<T>) {
   const t = useTranslations(namespace ?? 'common.Table')
 
@@ -52,6 +53,7 @@ export function GroupedRow<T extends TDataRoot>({
               row={subRow}
               key={subRow.id}
               classNames={classNames}
+              {...rest}
               className={index % 2 === 0 ? 'bg-base-200/20' : undefined}
             />
           ))}

@@ -1,4 +1,11 @@
-import React, { useCallback, useEffect, useMemo, useRef, useState } from 'react'
+import React, {
+  useCallback,
+  useEffect,
+  useImperativeHandle,
+  useMemo,
+  useRef,
+  useState,
+} from 'react'
 import 'react-date-range/dist/styles.css'
 import 'react-date-range/dist/theme/default.css'
 import {
@@ -36,12 +43,8 @@ export const DateRangeInput = React.forwardRef(function DateRangeInput(
 ) {
   const t = useTranslations('common.DateRangeInput')
   const inputRef = useRef<HTMLInputElement | null>(null)
+  useImperativeHandle(ref, () => inputRef as unknown as HTMLInputElement, [])
   const defaultDateValueUpdatedRef = useRef(false)
-  const registerRef = ref as (instance: HTMLInputElement | null) => void
-
-  useEffect(() => {
-    registerRef(inputRef.current)
-  }, [registerRef])
 
   const [range, setRange] = useState<DateRangeType[]>([
     {

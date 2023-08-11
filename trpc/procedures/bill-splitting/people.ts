@@ -6,6 +6,7 @@ import {
 import db from '@/lib/db'
 import { Prisma } from '.prisma/client'
 import GroupMemberCreateInput = Prisma.GroupMemberCreateInput
+import * as yup from 'yup'
 
 export const listMembers = authorizedProcedure.query(async opts => {
   const session = opts.ctx.session
@@ -22,7 +23,7 @@ export const listMembers = authorizedProcedure.query(async opts => {
   })
 })
 
-export const createMember = authorizedProcedure
+export const createOrUpdateMember = authorizedProcedure
   .input(PersonFormValuesSchema)
   .mutation(async opts => {
     const session = opts.ctx.session
@@ -33,35 +34,56 @@ export const createMember = authorizedProcedure
     const { isGuest, ...rest } = opts.input
 
     if (isGuest) {
-      return createNewGuest({
+      return upsertGuest({
         ...rest,
         ownerEmail: session.user.email,
       })
     }
 
-    return createNewMember({ ...rest, ownerEmail: session.user.email })
+    return upsertMember({ ...rest, ownerEmail: session.user.email })
   })
 
-const createNewGuest = async ({
+const upsertGuest = async ({
+  id,
   name,
   email,
   ownerEmail,
-}: Pick<GroupMemberCreateInput, 'name' | 'email'> & { ownerEmail: string }) =>
-  db.groupMember.create({
+}: Pick<GroupMemberCreateInput, 'id' | 'name' | 'email'> & {
+  ownerEmail: string
+}) => {
+  if (!id) {
+    return db.groupMember.create({
+      data: {
+        name,
+        email,
+        isGuest: true,
+        isActive: false,
+        owner: {
+          connect: {
+            email: ownerEmail,
+          },
+        },
+      },
+    })
+  }
+
+  return db.groupMember.update({
+    where: {
+      id,
+    },
     data: {
       name,
       email,
       isGuest: true,
       isActive: false,
-      owner: {
-        connect: {
-          email: ownerEmail,
-        },
-      },
+      fromDate: undefined,
+      toDate: undefined,
     },
   })
+}
 
-const createNewMember = async ({
+const upsertMember = async ({
+  id,
   name,
   email,
   isActive,
@@ -72,7 +94,28 @@ const createNewMember = async ({
     throw new Error('Invalid arguments')
   }
 
-  await db.groupMember.create({
+  if (!id) {
+    return db.groupMember.create({
+      data: {
+        name,
+        email,
+        isActive,
+        isGuest: false,
+        fromDate: range.from,
+        toDate: !isActive ? range.to : undefined,
+        owner: {
+          connect: {
+            email: ownerEmail,
+          },
+        },
+      },
+    })
+  }
+
+  return db.groupMember.update({
+    where: {
+      id,
+    },
     data: {
       name,
       email,
@@ -80,11 +123,28 @@ const createNewMember = async ({
       isGuest: false,
       fromDate: range.from,
       toDate: !isActive ? range.to : undefined,
-      owner: {
-        connect: {
-          email: ownerEmail,
-        },
-      },
     },
   })
 }
+
+const PersonIdSchema = yup.object().shape({
+  id: yup.string().required(),
+})
+
+export const getMemberById = authorizedProcedure
+  .input(PersonIdSchema)
+  .query(async ({ input, ctx }) => {
+    const { session } = ctx
+    if (!session?.user?.email) {
+      throw new Error('Not authorized')
+    }
+
+    return db.groupMember.findFirst({
+      where: {
+        id: input.id,
+        owner: {
+          email: session.user.email,
+        },
+      },
+    })
+  })

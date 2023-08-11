@@ -1,5 +1,12 @@
 'use client'
-import React, { useImperativeHandle, useRef, useState } from 'react'
+import React, {
+  useCallback,
+  useEffect,
+  useImperativeHandle,
+  useMemo,
+  useRef,
+  useState,
+} from 'react'
 import { Calendar, ClassNames } from 'react-date-range'
 import { AiOutlineCalendar } from 'react-icons/ai'
 import { ChangeHandler } from 'react-hook-form'
@@ -18,34 +25,47 @@ interface Props extends React.HTMLProps<HTMLInputElement> {
   name: string
   errorMessage?: string
   onChange: ChangeHandler
+  defaultDate?: Date
 }
 
 export const DateInput = React.forwardRef(function DateInput(
-  { label, name, onChange, errorMessage, ...rest }: Props,
+  { label, name, onChange, errorMessage, defaultDate, ...rest }: Props,
   ref: React.Ref<HTMLInputElement>,
 ) {
   const t = useTranslations('common.DateInput')
   const inputRef = useRef(null)
   useImperativeHandle(ref, () => inputRef as unknown as HTMLInputElement, [])
+  const defaultDateValueUpdatedRef = useRef(false)
 
   const [date, setDate] = useState<Date | undefined>()
   const [showDatePicker, setShowDatePicker] = useState(false)
 
-  const displayedDate = date
-    ? DateTime.fromJSDate(date).toFormat('dd/MM/yyyy')
-    : ''
+  const displayedDate = useMemo(
+    () => (date ? DateTime.fromJSDate(date).toFormat('dd/MM/yyyy') : ''),
+    [date],
+  )
 
-  const updateDate = (date: Date) => {
-    setDate(date)
-    onChange({
-      type: 'change',
-      target: {
-        name: `${name}`,
-        value: date,
-      },
-    })
-    setShowDatePicker(false)
-  }
+  const updateDate = useCallback(
+    (date: Date) => {
+      setDate(date)
+      onChange({
+        type: 'change',
+        target: {
+          name: `${name}`,
+          value: date,
+        },
+      })
+      setShowDatePicker(false)
+    },
+    [name, onChange],
+  )
+
+  useEffect(() => {
+    if (!defaultDateValueUpdatedRef.current && defaultDate) {
+      updateDate(defaultDate)
+      defaultDateValueUpdatedRef.current = true
+    }
+  }, [defaultDate, updateDate])
 
   return (
     <div className="relative">

@@ -156,7 +156,7 @@
         "title": "Không có bạn bè",
         "description": "Thêm bạn bè để tiếp tục nhé!"
       },
-      "AddPersonForm": {
+      "EditPersonForm": {
         "title": "Thêm thành viên",
         "description": "Bạn bè cùng chia tiền",
         "form": {

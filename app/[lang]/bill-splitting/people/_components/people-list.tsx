@@ -10,6 +10,8 @@ import {
   MemberRowView,
 } from '@/app/[lang]/bill-splitting/people/types'
 import { ClassNames, FieldOptions } from '@/components/table/types'
+import { Row } from '@tanstack/table-core'
+import { useRouter } from 'next/navigation'
 
 interface Props {
   initialPeople: GroupMember[]
@@ -28,6 +30,7 @@ const tableOptions: FieldOptions<MemberRowView> = {
 
 export const PeopleList: React.FC<Props> = ({ initialPeople }) => {
   const { data, isLoading } = trpc.listMembers.useQuery()
+  const router = useRouter()
 
   if (initialPeople.length === 0 && data?.length === 0) {
     return <NoPersonState />
@@ -37,6 +40,10 @@ export const PeopleList: React.FC<Props> = ({ initialPeople }) => {
     data?.map(mapMemberRowViewFromQuery) ??
     initialPeople.map(mapMemberRowViewFromGroupMember)
 
+  const openEditPersonModal = (row: Row<MemberRowView>) => {
+    router.push(`/bill-splitting/people/edit/${row.original.id}`)
+  }
+
   return (
     <Table<MemberRowView>
       namespace="bill-splitting.people.table"
@@ -44,6 +51,7 @@ export const PeopleList: React.FC<Props> = ({ initialPeople }) => {
       loading={isLoading}
       classNames={tableCssClassNames}
       fieldOptions={tableOptions}
+      onRowClick={openEditPersonModal}
     />
   )
 }

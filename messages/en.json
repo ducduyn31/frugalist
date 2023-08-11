@@ -156,7 +156,7 @@
         "title": "No Person",
         "description": "You don't have any people yet. Add one now!"
       },
-      "AddPersonForm": {
+      "EditPersonForm": {
         "title": "Add Person",
         "description": "Add a new person to the list",
         "form": {

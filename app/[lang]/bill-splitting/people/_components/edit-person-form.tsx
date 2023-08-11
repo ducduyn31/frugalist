@@ -1,5 +1,5 @@
 'use client'
-import React, { useCallback, useRef } from 'react'
+import React, { use, useCallback, useRef } from 'react'
 import { useTranslations } from 'use-intl'
 import { useRouter } from 'next/navigation'
 import { useForm } from 'react-hook-form'
@@ -8,16 +8,27 @@ import { DateInput } from '@/components/date-input'
 import {
   PersonFormValues,
   PersonFormValuesSchema,
+  prepareDefaultDateRange,
+  prepareDefaultValues,
 } from '@/app/[lang]/bill-splitting/people/person-form'
 import { CheckboxInput } from '@/components/checkbox-input'
 import { DateRangeInput } from '@/components/date-range-input'
 import { yupResolver } from '@hookform/resolvers/yup'
 import { trpc } from '@/trpc/trpc-client'
+import { GroupMember } from '@prisma/client'
 
-export const AddPersonForm: React.FC = () => {
-  const t = useTranslations('bill-splitting.people.AddPersonForm')
+interface Props {
+  memberPromise?: Promise<GroupMember | null>
+}
+
+export const EditPersonForm: React.FC<Props> = ({
+  memberPromise = Promise.resolve(null),
+}) => {
+  const t = useTranslations('bill-splitting.people.EditPersonForm')
+  const member = use(memberPromise)
+
   const utils = trpc.useContext()
-  const memberCreator = trpc.createMember.useMutation({
+  const memberUpserter = trpc.createOrUpdateMember.useMutation({
     onSuccess: () => {
       utils.listMembers.invalidate()
     },
@@ -34,6 +45,7 @@ export const AddPersonForm: React.FC = () => {
     register,
   } = useForm<PersonFormValues>({
     resolver: yupResolver(PersonFormValuesSchema),
+    defaultValues: prepareDefaultValues(member),
   })
 
   const cancelForm = useCallback(() => {
@@ -41,14 +53,14 @@ export const AddPersonForm: React.FC = () => {
     router.back()
   }, [router, reset])
 
-  const createMember = (values: PersonFormValues) => {
-    memberCreator.mutate(values)
+  const createOrUpdateMember = (values: PersonFormValues) => {
+    memberUpserter.mutate(values)
     cancelForm()
   }
 
   return (
     <dialog open className="modal">
-      <form className="modal-box" onSubmit={handleSubmit(createMember)}>
+      <form className="modal-box" onSubmit={handleSubmit(createOrUpdateMember)}>
         <h3 className="font-bold text-lg">{t('title')}</h3>
         <TextInput
           label={t('form.name.label')}
@@ -80,6 +92,7 @@ export const AddPersonForm: React.FC = () => {
             label={t('form.interval.label')}
             errorMessage={errors.range?.from?.message}
             disabled={watch('isGuest')}
+            defaultDate={watch('range.from')}
             {...register('range.from')}
           />
         ) : (
@@ -90,6 +103,7 @@ export const AddPersonForm: React.FC = () => {
               errors.range?.to?.message ||
               errors.range?.from?.message
             }
+            defaultDate={prepareDefaultDateRange(member)}
             disabled={watch('isGuest')}
             {...register('range')}
           />
